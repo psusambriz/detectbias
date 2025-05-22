@@ -154,4 +154,7 @@ biased_gps_vehicles = [(v,p) for v, p in gps_bias_results if p < 0.005]
 
 print("Vehicles with biased GPS data (p < 0.005):")
 for vehicle, p in biased_gps_vehicles:
-    print(f"Vehicle {vehicle}, p-value: {p:.5f}")
+    group = gps_grouped.get_group(vehicle)
+    mean_relpos = group["RELPOS"].mean()
+    std_relpos = group["RELPOS"].std()
+    print(f"Vehicle {vehicle}, p-value: {p:.5f}, mean relpos: {mean_relpos:.2f}, std relpos: {std_relpos:.2f}")
